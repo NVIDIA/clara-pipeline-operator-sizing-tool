@@ -1,0 +1,5 @@
+venv/
+.vscode/
+*.csv
+demo/
+.coverage

@@ -8,6 +8,6 @@ CPOST is a tool that will help you run your pipeline locally and provides you wi
 * Docker 20.10 or higher due to cgroup v2 constraints
 * System must be using cgroup v2 (See [Docker Control Groups](https://docs.docker.com/config/containers/runmetrics/#control-groups) for more information)
 * Python 3.8.0 or higher
-*Do not have a Triton instance running on the same machine that CPOST is running on. CPOST will provision it's own Triton instance and the two instances could conflict and cause failures.
+* Do not have a Triton instance running on the same machine that CPOST is running on. CPOST will provision it's own Triton instance and the two instances could conflict and cause failures.
 
 CPOST is available on [GitHub](https://github.com/NVIDIA/clara-pipeline-operator-sizing-tool)

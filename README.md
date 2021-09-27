@@ -39,8 +39,8 @@ optional arguments:
 ## Quick Start Guide
 
 ### Download CPOST
-#### Method 1: From NGC
-Download the cpost wheel file from NGC. (Available soon)
+#### Method 1: Install from Pypi as a PIP package
+Run `pip install nvidia-clara-cpost`
 
 #### Method 2: Build from Source Repository
 1. Clone this repository.
@@ -52,7 +52,7 @@ $ ls dist
 nvidia_clara_cpost-0.0.0-py3-none-any.whl  nvidia-clara-cpost-0.0.0.tar.gz
 ```
 
-### Run CPOST in a virtual environment (or I guess you can install it globally as well)
+### Run CPOST in a virtual environment (recommended)
 After you have downloaded the wheel from [Download CPOST](#download-cpost), create a virtual environment to work with.
 ```
 $ mkdir ./demo

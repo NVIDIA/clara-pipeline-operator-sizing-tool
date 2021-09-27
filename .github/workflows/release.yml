@@ -1,4 +1,4 @@
-name: release
+name: Release
 # generating and testing package artifacts from the main branch
 
 on:
@@ -38,14 +38,13 @@ jobs:
         name: Upload artifacts
         uses: actions/upload-artifact@v1
         with:
-          name: cpost
-          path: dist/nvidia_clara_cpost-*.whl
+          path: ${{ github.workspace }}/dist/nvidia_clara_cpost-*.whl
 
       - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
         name: Check artifacts
         run: |
           ls -al dist/
-          rm dist/nvidia-clara-cpost-*.tar.gz
+          rm ./dist/nvidia-clara-cpost-*.tar.gz
           ls -al dist/
 
       - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')

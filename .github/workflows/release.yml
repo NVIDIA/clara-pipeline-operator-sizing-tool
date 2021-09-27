@@ -52,4 +52,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.PYPI_TOKEN }}
-          repository_url: https://pypi.org/legacy/
+          repository_url: https://pypi.org/project/nvidia-clara-cpost/

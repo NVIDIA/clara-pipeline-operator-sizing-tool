@@ -1,4 +1,4 @@
-name: stagig
+name: Staging
 # generating and testing package artifacts from the main branch
 
 on:
@@ -31,21 +31,21 @@ jobs:
       - name: Test
         run: python3 -m pytest tests
 
-      - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
+      - if: matrix.python-version == '3.8' 
         name: Upload artifacts
         uses: actions/upload-artifact@v1
         with:
           name: cpost
-          path: dist/nvidia_clara_cpost-*.whl
+          path: ${{ github.workspace }}/dist/nvidia_clara_cpost-*.whl
 
-      - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
+      - if: matrix.python-version == '3.8'
         name: Check artifacts
         run: |
           ls -al dist/
           rm dist/nvidia-clara-cpost-*.tar.gz
           ls -al dist/
 
-      - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
+      - if: matrix.python-version == '3.8' 
         name: Publish to Test PyPI
         uses: pypa/gh-action-pypi-publish@master
         with:

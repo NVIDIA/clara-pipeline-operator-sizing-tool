@@ -1,4 +1,4 @@
-name: Release
+name: 'Release'
 # generating and testing package artifacts from the main branch
 
 on:
@@ -36,9 +36,9 @@ jobs:
 
       - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
         name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          path: ${{ github.workspace }}/dist/nvidia_clara_cpost-*.whl
+          path: ./dist/nvidia_clara_cpost-*.whl
 
       - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
         name: Check artifacts

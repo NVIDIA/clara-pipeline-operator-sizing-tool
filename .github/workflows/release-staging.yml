@@ -1,0 +1,53 @@
+name: stagig
+# generating and testing package artifacts from the main branch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  packaging:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+      - name: Build
+        run: |
+          python3 setup.py sdist bdist_wheel
+      - name: Install
+        run: |
+          pip install ./dist/*.whl
+      - name: Test
+        run: python3 -m pytest tests
+
+      - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
+        name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: cpost
+          path: dist/nvidia_clara_cpost-*.whl
+
+      - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
+        name: Check artifacts
+        run: |
+          ls -al dist/
+          rm dist/nvidia-clara-cpost-*.tar.gz
+          ls -al dist/
+
+      - if: matrix.python-version == '3.8' && startsWith(github.ref, 'refs/tags/')
+        name: Publish to Test PyPI
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.TEST_PYPI_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/

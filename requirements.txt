@@ -1,5 +1,5 @@
 psutil==5.8.0
 pytest==6.2.4
 PyYAML==5.4.1
-requests==2.25.1
+requests==2.31.0
 tabulate==0.8.9
